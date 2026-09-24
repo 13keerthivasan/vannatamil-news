@@ -1,0 +1,21 @@
+# Vannatamil News — Netlify configuration
+# No build step: the site is a single HTML file, the connector is one function.
+
+[build]
+  publish   = "public"
+  functions = "netlify/functions"
+
+# Security headers on every page
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# The HTML should always be fresh so edits show up immediately
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
